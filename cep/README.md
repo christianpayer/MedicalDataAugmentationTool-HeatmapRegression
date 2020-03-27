@@ -5,15 +5,21 @@ This example implements the CEP networks of the paper [Integrating Spatial Confi
 
 Run the file `convert_bmp_to_nii.py` to convert the .bmp files of the original dataset to .nii.gz files with the correct spacing that can be loaded by the framework.
 
+You need to have the [MedicalDataAugmentationTool](https://github.com/christianpayer/MedicalDataAugmentationTool) framework downloaded and in you PYTHONPATH for the scripts to work.
+If you have problems/questions/suggestions about the code, write me a [mail](mailto:christian.payer@gmx.net)!
+
+### Change annotation groundtruth
 Per default, the network use the groundtruth annotations that were used in the 2015 CEP challenge paper from Wang et al. ([Evaluation and Comparison of Anatomical Landmark Detection Methods for Cephalometric X-Ray Images: A Grand Challenge](https://doi.org/10.1109/TMI.2015.2412951)).
 This groundtruth was also used in our MIA paper.
 Additionally, the paper Lindner et al. 2016 ([Fully Automatic System for Accurate Localisation and Analysis of Cephalometric Landmarks in Lateral Cephalograms](https://doi.org/10.1038/srep33581)) provided groundtruth annotations from a junior and a senior radiologist.
-However, in our MIA paper, we did not use this groundtruth for training or evaluation, but only the groundtruth from Wang et al. 2015.
+However, in our MIA paper, we did not use this groundtruth for training or evaluation, but only the groundtruth from Wang et al. 2015 (`challenge`).
+
+Note that Wang et al. claimed in their paper that the groundtruth of the challenge was obtained as the average of two radiologists.
+However, when looking more detailed at the individual groundtruths, we found the the groundtruth files from the 2015 CEP challenge (`challenge`) are the same as the groundtruth files of the senior radiologist from Lindner et al. (`senior`).
+The only difference is that the annotations for landmark 16 are changed for the images of test 2 set.
 
 You can change the groundtruth that is being used for training by setting the `landmark_source` parameter of the MainLoop.
 See the file `main.py` for more details.
-
-If you have problems/questions/suggestions about the code, write me a [mail](mailto:christian.payer@gmx.net)!
 
 ### Dataset
 In the folder `setup`, there are the different landmark groundtruths (`challenge`, `junior`, `senior`) with 0.1 image spacing, as well as lists for training, test1 and test2 set.
