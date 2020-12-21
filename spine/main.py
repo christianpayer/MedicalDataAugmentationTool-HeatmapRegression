@@ -246,7 +246,7 @@ class MainLoop(MainLoopBase):
         tensorflow_train.utils.tensorflow_util.print_progress_bar(self.dataset_val.num_entries(), self.dataset_val.num_entries(), prefix='Testing ', suffix=' complete')
         print(landmark_statistics.get_pe_overview_string())
         print(landmark_statistics.get_correct_id_string(20.0))
-        summary_values = OrderedDict(zip(self.point_statistics_names, list(landmark_statistics.get_pe_statistics()) + [landmark_statistics.get_correct_id(20)]))
+        summary_values = OrderedDict(zip(self.point_statistics_names, list(landmark_statistics.get_pe_statistics()) + [landmark_statistics.get_num_correct_id(20)]))
 
         # finalize loss values
         self.val_loss_aggregator.finalize(self.current_iter, summary_values)
